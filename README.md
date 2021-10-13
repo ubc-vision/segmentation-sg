@@ -18,7 +18,7 @@ To setup the environment with all the required dependencies, follow the steps de
 ## Prepare Dataset
 The approach requires access to Visual Genome and MS-COCO datasets. 
 - MS-COCO is publicly available [here](https://cocodataset.org/#download). We use the 2017 Train/Val splits in our experiments.
-- We use the Visual Genome filtered data widely used in the Scene Graph community. Please see the [Unbiased Scene Graph Generation repo](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch) on instructions to download this dataset.
+- We use the Visual Genome filtered data widely used in the Scene Graph community. Please see the [Unbiased Scene Graph Generation repo](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch/blob/master/DATASET.md) on instructions to download this dataset.
 
 ## Pretrain Object Detector
 Before the scene graph models can be trained, the first step involves jointly pre-training the object detector to accurately predict bounding boxes on Visual Genome and segmentation masks on MS-COCO. 
