@@ -100,7 +100,7 @@ MODEL.ROI_SCENEGRAPH_HEAD.PREDICTOR 'MotifSegmentationPredictorC' MODEL.ROI_HEAD
 
 Note that these commands augment our approach to Neural Motifs with ResNeXt 101 backbone. To use VCTree, use 
 ```python
-MODEL.ROI_SCENEGRAPH_HEAD.PREDICTOR 'MotifSegmentationPredictorC'
+MODEL.ROI_SCENEGRAPH_HEAD.PREDICTOR 'VCTreeSegmentationPredictorC'
 ```
 To use VGG-16 backbone, use
 ```python
