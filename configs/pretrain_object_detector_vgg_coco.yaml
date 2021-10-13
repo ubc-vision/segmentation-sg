@@ -1,0 +1,46 @@
+MODEL:
+  PIXEL_MEAN: (123.675, 116.280, 103.530)  #RGB
+  PIXEL_STD: (58.395, 57.120, 57.375)  #RGB
+  MASK_ON: True
+  META_ARCHITECTURE: 'GeneralizedRCNNWithCOCO'
+  WEIGHTS: ""
+  BACKBONE:
+    NAME: 'VGG'
+  ROI_HEADS:
+    NUM_CLASSES: 150
+    EMBEDDINGS_PATH: "../data/embeddings/glove_mean_vg"
+    EMBEDDINGS_PATH_COCO: "../data/embeddings/glove_mean_coco"
+    NAME: 'StandardROIHeadsWithCOCO'
+    IN_FEATURES: ['vgg_conv']
+  ROI_MASK_HEAD:
+    NAME: 'MaskRCNNConvUpsampleHeadwithCOCO'
+  ROI_BOX_HEAD:
+    NAME: 'VGGConvFCHead'
+    POOLER_RESOLUTION: 7  
+    POOLER_TYPE: "ROIPool"
+  RPN:
+    IN_FEATURES: ['vgg_conv']
+DATASETS:
+  TYPE: "VISUAL GENOME"
+  TRAIN: ('VG_train',)
+  TEST: ('coco_val_2017', 'VG_val',)
+  VISUAL_GENOME:
+    TRAIN_MASKS: ''
+    VAL_MASKS: ''
+    TEST_MASKS: ''
+    TRAIN_MASKS: ''
+    FILTER_EMPTY_RELATIONS: False
+    FILTER_NON_OVERLAP: False
+    FILTER_DUPLICATE_RELATIONS: False
+DATALOADER:
+  NUM_WORKERS: 2
+SOLVER:
+  BASE_LR: 0.02
+  IMS_PER_BATCH: 8
+  CHECKPOINT_PERIOD: 500
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+TEST:
+  EVAL_PERIOD: 10000
+INPUT:
+  FORMAT: "RGB"

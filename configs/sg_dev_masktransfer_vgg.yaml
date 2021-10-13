@@ -1,0 +1,62 @@
+MODEL:
+  META_ARCHITECTURE: 'SceneGraphSegmentationRCNN'
+  MASK_ON: True
+  USE_MASK_ON_NODE: False
+  WEIGHTS: "../models/vgg_seg_weights_longer.pth"
+  PIXEL_MEAN: (123.675, 116.280, 103.530)  #RGB
+  PIXEL_STD: (58.395, 57.120, 57.375)  #RGB
+  BACKBONE:
+    NAME: 'VGG'
+  ROI_HEADS:
+    NAME: 'SGSegmentationROIHeadsMaskTransfer'
+    NUM_CLASSES: 150
+    EMBEDDINGS_PATH: "../data/embeddings/glove_mean_vg"
+    EMBEDDINGS_PATH_COCO: "../data/embeddings/glove_mean_coco"
+    IN_FEATURES: ['vgg_conv']
+  ROI_SCENEGRAPH_HEAD:
+    NAME: 'SceneGraphSegmentationHead'
+    PREDICTOR: 'MotifSegmentationPredictor'
+  ROI_MASK_HEAD:
+    NAME: 'SceneGraphMaskHeadTransfer'
+  FREEZE_LAYERS:
+    META_ARCH: [proposal_generator, backbone]
+    ROI_HEADS: [box_pooler, box_head, box_predictor, mask_pooler, mask_head, keypoint_pooler, keypoint_head]
+  ROI_BOX_FEATURE_EXTRACTORS:
+    NAME: 'BoxFeatureSegmentationExtractor'
+  ROI_BOX_HEAD:
+    NAME: 'VGGConvFCHead'
+    POOLER_RESOLUTION: 7  
+    POOLER_TYPE: "ROIPool"
+  RPN:
+    IN_FEATURES: ['vgg_conv']
+DATASETS:
+  TYPE: "VISUAL GENOME"
+  TRAIN: ('VG_train',)
+  TEST: ('coco_val_2017','VG_test',)
+  VISUAL_GENOME:
+    TRAIN_MASKS: ""
+    VAL_MASKS: ""
+    TEST_MASKS: ""
+    TRAIN_MASKS: ""
+    FILTER_EMPTY_RELATIONS: True
+    FILTER_NON_OVERLAP: True
+    FILTER_DUPLICATE_RELATIONS: True
+DATALOADER:
+  NUM_WORKERS: 2
+SOLVER:
+  IMS_PER_BATCH: 16
+  BIAS_LR_FACTOR: 1.0
+  BASE_LR: 0.01
+  WARMUP_FACTOR: 0.1
+  WEIGHT_DECAY: 0.0001
+  MOMENTUM: 0.9
+  STEPS: (10000, 16000)
+  MAX_ITER: 40000
+  CHECKPOINT_PERIOD: 500
+  CLIP_GRADIENTS:
+    CLIP_VALUE: 5.0
+TEST:
+  EVAL_PERIOD: 5000
+GLOVE_DIR: '../glove/'
+INPUT:
+  FORMAT: "RGB"

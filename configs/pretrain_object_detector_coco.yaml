@@ -1,0 +1,39 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+MODEL:
+  MASK_ON: True
+  META_ARCHITECTURE: 'GeneralizedRCNNWithCOCO'
+  WEIGHTS: "../models/model_final_2d9806.pkl"
+  PIXEL_STD: [57.375, 57.120, 58.395]
+  RESNETS:
+    STRIDE_IN_1X1: False  # this is a C2 model
+    NUM_GROUPS: 32
+    WIDTH_PER_GROUP: 8
+    DEPTH: 101
+  ROI_HEADS:
+    NUM_CLASSES: 150
+    EMBEDDINGS_PATH: "../data/embeddings/glove_mean_vg"
+    EMBEDDINGS_PATH_COCO: "../data/embeddings/glove_mean_coco"
+    NAME: 'StandardROIHeadsWithCOCO'
+  ROI_MASK_HEAD:
+    NAME: 'MaskRCNNConvUpsampleHeadwithCOCO'
+DATASETS:
+  TYPE: "VISUAL GENOME"
+  TRAIN: ('VG_train',)
+  TEST: ('coco_val_2017', 'VG_val',)
+  VISUAL_GENOME:
+    TRAIN_MASKS: ''
+    VAL_MASKS: ''
+    TEST_MASKS: ''
+    TRAIN_MASKS: ''
+    FILTER_EMPTY_RELATIONS: False
+    FILTER_NON_OVERLAP: False
+    FILTER_DUPLICATE_RELATIONS: False
+DATALOADER:
+  NUM_WORKERS: 2
+SOLVER:
+  IMS_PER_BATCH: 8
+  CHECKPOINT_PERIOD: 500
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+TEST:
+  EVAL_PERIOD: 10000
