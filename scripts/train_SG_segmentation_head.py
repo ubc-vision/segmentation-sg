@@ -24,8 +24,8 @@ def register_coco_data(args):
     # classes = [x['name'] for x in annotations['categories']]
     classes = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
     MetadataCatalog.get('coco_train_2014').set(thing_classes=classes, evaluator_type='coco')
-    annotations = cfg.DATASETS.MSCOCO.ANNOTATIONS
-    dataroot = cfg.DATASETS.MSCOCO.DATAROOT
+    annotations = args.DATASETS.MSCOCO.ANNOTATIONS
+    dataroot = args.DATASETS.MSCOCO.DATAROOT
     register_coco_instances("coco_train_2017", {}, annotations + 'instances_train2017_clipped.json', dataroot + '/train2017/')
     register_coco_instances("coco_val_2017", {}, annotations + 'instances_val2017.json', dataroot + '/val2017/')
 
