@@ -20,8 +20,8 @@ from detectron2.data.datasets import register_coco_instances
 parser = default_argument_parser()
 
 def register_coco_data(args):
-    annotations = cfg.DATASETS.MSCOCO.ANNOTATIONS
-    dataroot = cfg.DATASETS.MSCOCO.DATAROOT
+    annotations = args.DATASETS.MSCOCO.ANNOTATIONS
+    dataroot = args.DATASETS.MSCOCO.DATAROOT
     register_coco_instances("coco_train_2017", {}, annotations + 'instances_train2017_clipped.json', dataroot + '/train2017/')
     register_coco_instances("coco_val_2017", {}, annotations + 'instances_val2017.json', dataroot + '/val2017/')
 
