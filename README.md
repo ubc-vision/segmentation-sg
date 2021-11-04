@@ -33,6 +33,8 @@ If using the VGG-16 backbone, the pre-training can be achieved by running the fo
 python pretrain_object_detector_withcoco.py  --config-file ../configs/pretrain_object_detector_vgg_coco.yaml --num-gpus 4 --resume DATASETS.VISUAL_GENOME.IMAGES <PATH TO VG_100K IMAGES> DATASETS.VISUAL_GENOME.MAPPING_DICTIONARY <PATH TO VG-SGG-dicts-with-attri.json> DATASETS.VISUAL_GENOME.IMAGE_DATA <PATH TO image_data.json> DATASETS.VISUAL_GENOME.VG_ATTRIBUTE_H5 <PATH TO VG-SGG-with-attri.h5> DATASETS.MSCOCO.ANNOTATIONS <PATH TO MSCOCO ANNOTATIONS> DATASETS.MSCOCO.DATAROOT <PATH TO MSCOCO IMAGES> OUTPUT_DIR <PATH TO CHECKPOINT DIR>
 ```
 
+The jointly trained pre-trained weights can be found [here](https://drive.google.com/drive/folders/1YZ3ipSi_ao_Xl9UsMBbmro7sp2mi8bqr?usp=sharing).
+
 ## Train Scene Graph Model
 Once the object detector pre-training is complete, prepare the pre-training weights to be used with scene graph training. Run the following script to achieve this
 ```python
