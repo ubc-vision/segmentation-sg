@@ -11,9 +11,9 @@ from detectron2.engine import default_argument_parser, default_setup, launch
 from detectron2.config import get_cfg
 from detectron2.checkpoint import DetectionCheckpointer
 
-from SceneGraph.engine import SceneGraphSegmentationTrainer
-from SceneGraph.data import add_dataset_config, VisualGenomeTrainData, register_datasets
-from SceneGraph.modeling.roi_heads.scenegraph_head import add_scenegraph_config
+from segmentationsg.engine import SceneGraphSegmentationTrainer
+from segmentationsg.data import add_dataset_config, VisualGenomeTrainData, register_datasets
+from segmentationsg.modeling.roi_heads.scenegraph_head import add_scenegraph_config
 from detectron2.data import DatasetCatalog, MetadataCatalog
 from detectron2.data.datasets import register_coco_instances
 

@@ -13,7 +13,7 @@ This repository contains the code for the CVPR 2021 paper titled [**"Segmentatio
 ```
 
 ## Requirements
-To setup the environment with all the required dependencies, follow the steps detailed in [INSTALL.md](https://github.com/ubc-vision/UniT/blob/main/INSTALL.md). 
+To setup the environment with all the required dependencies, follow the steps detailed in [INSTALL.md](https://github.com/ubc-vision/UniT/blob/main/INSTALL.md). Additionally, please rename the cloned repository from `segmentation-sg` to `segmentationsg`.
 
 ## Prepare Dataset
 The approach requires access to Visual Genome and MS-COCO datasets. 
