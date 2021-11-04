@@ -2,7 +2,7 @@ MODEL:
   META_ARCHITECTURE: 'SceneGraphSegmentationRCNN'
   MASK_ON: True
   USE_MASK_ON_NODE: False
-  WEIGHTS: "../models/vgg_seg_weights_longer.pth"
+  WEIGHTS: ""
   PIXEL_MEAN: (123.675, 116.280, 103.530)  #RGB
   PIXEL_STD: (58.395, 57.120, 57.375)  #RGB
   BACKBONE:

@@ -3,7 +3,7 @@ MODEL:
   META_ARCHITECTURE: 'SceneGraphSegmentationRCNN'
   MASK_ON: True
   USE_MASK_ON_NODE: False
-  WEIGHTS: "../models/coco_joint_training_weights.pth"
+  WEIGHTS: ""
   PIXEL_STD: [57.375, 57.120, 58.395]
   RESNETS:
     STRIDE_IN_1X1: False  # this is a C2 model
