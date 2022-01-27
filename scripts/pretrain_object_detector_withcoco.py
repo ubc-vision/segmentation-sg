@@ -13,10 +13,10 @@ from detectron2.config import get_cfg
 from detectron2.evaluation import DatasetEvaluators, DatasetEvaluator, inference_on_dataset, print_csv_format, inference_context
 from detectron2.checkpoint import DetectionCheckpointer
 
-from SceneGraph.engine import ObjectDetectorTrainerWithCoco
-from SceneGraph.data import add_dataset_config, VisualGenomeTrainData, register_datasets
+from segmentationsg.engine import ObjectDetectorTrainerWithCoco
+from segmentationsg.data import add_dataset_config, VisualGenomeTrainData, register_datasets
 from detectron2.data.datasets import register_coco_instances
-
+from segmentationsg.modeling import *
 parser = default_argument_parser()
 
 def register_coco_data(args):

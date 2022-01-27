@@ -31,9 +31,7 @@ class VisualGenomeTrainData:
         self.clamped = True if "clamped" in self.mask_location else ""
         self.clipped = cfg.DATASETS.VISUAL_GENOME.CLIPPED
         self.precompute = False if (self.cfg.DATASETS.VISUAL_GENOME.FILTER_EMPTY_RELATIONS or self.cfg.DATASETS.VISUAL_GENOME.FILTER_NON_OVERLAP) else True
-        with open('/h/skhandel/SceneGraph/data/datasets/images_to_remove.txt', 'r') as f:
-            ids = f.readlines()
-        self.ids_to_remove = {int(x.strip()) : 1 for x in ids[0].replace('[', '').replace(']','').split(",")}
+        
         # self._process_data()
         self.dataset_dicts = self._fetch_data_dict()
         self.register_dataset()
@@ -176,9 +174,7 @@ class VisualGenomeTrainData:
             record['image_id'] = image_data['image_id']
             record['height'] = image_data['height']
             record['width'] = image_data['width']
-            if self.clipped:
-                if image_data['coco_id'] in self.ids_to_remove:
-                    continue
+    
             #Get annotations
             boxes = all_boxes[first_box_index[idx]:last_box_index[idx] + 1, :]
             gt_classes = all_labels[first_box_index[idx]:last_box_index[idx] + 1]

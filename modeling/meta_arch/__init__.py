@@ -1,1 +1,1 @@
-from .rcnn import SceneGraphRCNN
+from .rcnn import *

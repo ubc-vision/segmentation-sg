@@ -6,7 +6,7 @@ import numpy as np
 from detectron2.config import configurable
 from detectron2.layers import Conv2d, ConvTranspose2d, ShapeSpec, cat, get_norm
 from detectron2.structures import Instances
-from detectron2.modeling.roi_heads import MaskRCNNConvUpsampleHead, ROI_MASK_HEAD_REGISTRY
+from detectron2.modeling.roi_heads.mask_head import MaskRCNNConvUpsampleHead, ROI_MASK_HEAD_REGISTRY
 from detectron2.modeling.roi_heads.mask_head import mask_rcnn_inference, mask_rcnn_loss
 from detectron2.layers import Conv2d, ConvTranspose2d, ShapeSpec, cat, get_norm
 from detectron2.utils.events import get_event_storage

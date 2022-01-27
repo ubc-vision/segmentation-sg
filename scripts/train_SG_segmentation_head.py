@@ -16,6 +16,7 @@ from segmentationsg.data import add_dataset_config, VisualGenomeTrainData, regis
 from segmentationsg.modeling.roi_heads.scenegraph_head import add_scenegraph_config
 from detectron2.data import DatasetCatalog, MetadataCatalog
 from detectron2.data.datasets import register_coco_instances
+from segmentationsg.modeling import *
 
 parser = default_argument_parser()
 
