@@ -22,7 +22,7 @@ parser = default_argument_parser()
 def register_coco_data(args):
     annotations = args.DATASETS.MSCOCO.ANNOTATIONS
     dataroot = args.DATASETS.MSCOCO.DATAROOT
-    register_coco_instances("coco_train_2017", {}, annotations + 'instances_train2017_clipped.json', dataroot + '/train2017/')
+    register_coco_instances("coco_train_2017", {}, annotations + 'instances_train2017.json', dataroot + '/train2017/')
     register_coco_instances("coco_val_2017", {}, annotations + 'instances_val2017.json', dataroot + '/val2017/')
 
 def setup(args):
