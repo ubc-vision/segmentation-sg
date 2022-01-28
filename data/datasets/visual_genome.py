@@ -58,15 +58,17 @@ class VisualGenomeTrainData:
         Load data in detectron format
         """
         fileName = "tmp/visual_genome_{}_data_{}{}{}{}{}.pkl".format(self.split, 'masks' if self.mask_exists else '', '_oi' if 'oi' in self.mask_location else '', "_clamped" if self.clamped else "", "_precomp" if self.precompute else "", "_clipped" if self.clipped else "")
-        print("Loading file: ", fileName)
         if os.path.isfile(fileName):
             #If data has been processed earlier, load that to save time
+            print("loading cached file: ", fileName)
             with open(fileName, 'rb') as inputFile:
                 dataset_dicts = pickle.load(inputFile)
         else:
             #Process data
             os.makedirs('tmp', exist_ok=True)
             dataset_dicts = self._process_data()
+            #TODO: this can cause problems, if it is excecuted in a distributed setup
+            print("creating cache file: ", fileName)
             with open(fileName, 'wb') as inputFile:
                 pickle.dump(dataset_dicts, inputFile)
         return dataset_dicts

@@ -265,7 +265,7 @@ class SceneGraphSegmentationTrainer(DefaultTrainer):
         """
         If you want to do something with the data, you can wrap the dataloader.
         """
-        data = next(self._data_loader_iter)
+        data = next(self._trainer._data_loader_iter)
         mask_data = next(self.mask_train_loader)
         data_time = time.perf_counter() - start
 
@@ -292,10 +292,7 @@ class SceneGraphSegmentationTrainer(DefaultTrainer):
         with torch.cuda.stream(
             torch.cuda.Stream()
         ) if losses.device.type == "cuda" else _nullcontext():
-            metrics_dict = loss_dict
-            metrics_dict["data_time"] = data_time
-            self._write_metrics(metrics_dict)
-            self._detect_anomaly(losses, loss_dict)
+            self._trainer._write_metrics(loss_dict, data_time)
 
         """
         If you need gradient clipping/scaling or other processing, you can
@@ -365,7 +362,7 @@ class TestTrainer(SceneGraphTrainer):
             """
             If you want to do something with the data, you can wrap the dataloader.
             """
-            data = next(self._data_loader_iter)
+            data = next(self._trainer._data_loader_iter)
             data_time = time.perf_counter() - start
 
             """
@@ -397,10 +394,7 @@ class TestTrainer(SceneGraphTrainer):
             with torch.cuda.stream(
                 torch.cuda.Stream()
             ) if losses.device.type == "cuda" else _nullcontext():
-                metrics_dict = loss_dict
-                metrics_dict["data_time"] = data_time
-                self._write_metrics(metrics_dict)
-                self._detect_anomaly(losses, loss_dict)
+                self._trainer._write_metrics(loss_dict, data_time)
 
             """
             If you need gradient clipping/scaling or other processing, you can
