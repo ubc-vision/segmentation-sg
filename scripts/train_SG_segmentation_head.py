@@ -2,8 +2,6 @@ import sys
 import os
 import numpy as np
 import torch
-sys.path.insert(0, '../../')
-sys.path.insert(0, '../')
 
 import detectron2.utils.comm as comm
 from detectron2.utils.logger import setup_logger
