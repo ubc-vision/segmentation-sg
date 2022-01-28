@@ -23,7 +23,7 @@ from detectron2.evaluation import DatasetEvaluators, DatasetEvaluator, inference
 from imantics import Polygons, Mask
 
 from detectron2.engine import hooks, HookBase
-from ..data import SceneGraphDatasetMapper, MaskLabelDatasetMapper, ObjectDetectionDatasetMapper, MaskRCNNDatasetMapper
+from data import SceneGraphDatasetMapper, MaskLabelDatasetMapper, ObjectDetectionDatasetMapper, MaskRCNNDatasetMapper
 from detectron2.evaluation import (
     COCOEvaluator,
     COCOPanopticEvaluator,
