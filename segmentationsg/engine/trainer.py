@@ -1,5 +1,3 @@
-import os
-import sys
 import torch
 import numpy as np
 import logging 
@@ -7,30 +5,23 @@ import detectron2.utils.comm as comm
 import time 
 import datetime
 import pickle
-import itertools
-import pycocotools.mask as mask_util
 from collections import OrderedDict
-from detectron2.utils.logger import setup_logger, log_every_n_seconds
+from detectron2.utils.logger import log_every_n_seconds
 from detectron2.engine import DefaultTrainer
 from detectron2.data import (
-    MetadataCatalog,
     build_detection_test_loader,
     build_detection_train_loader,
     get_detection_dataset_dicts,
     build_batch_data_loader
 )
-from detectron2.evaluation import DatasetEvaluators, DatasetEvaluator, inference_on_dataset, print_csv_format, inference_context
-from imantics import Polygons, Mask
+from detectron2.evaluation import DatasetEvaluator, print_csv_format, inference_context
+from imantics import Mask
 
-from detectron2.engine import hooks, HookBase
-from ..data import SceneGraphDatasetMapper, MaskLabelDatasetMapper, ObjectDetectionDatasetMapper, MaskRCNNDatasetMapper
+from detectron2.engine import HookBase
+from segmentationsg.data import MaskLabelDatasetMapper, ObjectDetectionDatasetMapper, MaskRCNNDatasetMapper
 from detectron2.evaluation import (
     COCOEvaluator,
-    COCOPanopticEvaluator,
-    DatasetEvaluators,
-    LVISEvaluator,
-    PascalVOCDetectionEvaluator,
-    SemSegEvaluator
+    DatasetEvaluators
 )
 from ..checkpoint import PeriodicCheckpointerWithEval
 from ..evaluation import COCOEvaluatorWeakSegmentation
@@ -39,7 +30,7 @@ from detectron2.data.samplers import InferenceSampler, RepeatFactorTrainingSampl
 from detectron2.data.common import MapDataset, DatasetFromList
 from detectron2.data.dataset_mapper import DatasetMapper
 from detectron2.data.build import trivial_batch_collator
-from detectron2.utils.comm import get_world_size, is_main_process
+from detectron2.utils.comm import get_world_size
 
 import contextlib
 try:
