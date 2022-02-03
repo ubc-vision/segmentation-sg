@@ -1,0 +1,51 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+MODEL:
+  META_ARCHITECTURE: 'SceneGraphRCNN'
+  MASK_ON: False
+  USE_MASK_ON_NODE: False
+  WEIGHTS: ""
+  PIXEL_STD: [57.375, 57.120, 58.395]
+  RESNETS:
+    STRIDE_IN_1X1: False  # this is a C2 model
+    NUM_GROUPS: 32
+    WIDTH_PER_GROUP: 8
+    DEPTH: 101
+  ROI_HEADS:
+    NAME: 'StandardSGROIHeads'
+    NUM_CLASSES: 150
+    EMBEDDINGS_PATH: "../data/embeddings/glove_mean_vg"
+    EMBEDDINGS_PATH_COCO: "../data/embeddings/glove_mean_coco"
+  ROI_MASK_HEAD:
+    NAME: 'SceneGraphMaskHead'
+  FREEZE_LAYERS:
+    META_ARCH: [proposal_generator, backbone]
+    ROI_HEADS: [box_pooler, box_head, box_predictor, mask_pooler, mask_head, keypoint_pooler, keypoint_head]
+DATASETS:
+  TYPE: "VISUAL GENOME"
+  TRAIN: ('VG_train',)
+  TEST: ('VG_test',)
+  VISUAL_GENOME:
+    TRAIN_MASKS: ""
+    VAL_MASKS: ""
+    TEST_MASKS: ""
+    TRAIN_MASKS: ""
+    FILTER_EMPTY_RELATIONS: True
+    FILTER_NON_OVERLAP: True
+    FILTER_DUPLICATE_RELATIONS: True
+DATALOADER:
+  NUM_WORKERS: 2
+SOLVER:
+  IMS_PER_BATCH: 16
+  BIAS_LR_FACTOR: 1.0
+  BASE_LR: 0.01
+  WARMUP_FACTOR: 0.1
+  WEIGHT_DECAY: 0.0001
+  MOMENTUM: 0.9
+  STEPS: (10000, 16000)
+  MAX_ITER: 40000
+  CHECKPOINT_PERIOD: 500
+  CLIP_GRADIENTS:
+    CLIP_VALUE: 5.0
+TEST:
+  EVAL_PERIOD: 5000
+GLOVE_DIR: '../glove/'
